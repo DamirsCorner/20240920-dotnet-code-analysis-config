@@ -35,8 +35,10 @@ public class WeatherForecastController : ControllerBase
             .Select(index => new WeatherForecast
             {
                 Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
+#pragma warning disable CA5394 // Do not use insecure randomness
                 TemperatureC = Random.Shared.Next(-20, 55),
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+#pragma warning restore CA5394 // Do not use insecure randomness
             })
             .ToArray();
     }
